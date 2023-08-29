@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sign Up</title>
+	<style>
+		body {
+			font-family: calibri;
+			text-align: center;
+			background-color: #eef2ff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		/*header css*/
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+		}
+		
+		/*signup css*/
+
+		.signup-box {
+			text-align: left;
+			padding: 20px 50px 20px 50px;
+			background-color: #eeefff;
+			border-radius: 20px;
+			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+		}
+
+		.signup-box input[type=text],
+		[type=email],
+		[type=password] {
+			width: 100%;
+			padding: 10px 10px;
+			margin: 5px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		.signup-box button[type=submit] {
+			color: white;
+			padding: 12px 20px;
+			border: 0px;
+			border-radius: 10px;
+			background-color: #3f5cbc;
+		}
+
+		.login {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
+		</div>
+	</div>
+
+	<h1>Sign Up</h1>
+	<div class="signup-box" align="center">
+		<br />
+		<form th:action="@{/signup}" th:object="${user}" method="post">
+			<table border="0">
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" th:field="*{username}" /></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="email" th:field="*{email}" /></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" th:field="*{password}" /></td>
+				</tr>
+				<br>
+				<tr>
+					<td colspan="2"><button type="submit">Sign Up</button></td>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<div class="login">
+			<a th:href="@{/login}">Already Registered? Click here to Login</a>
+		</div>
+	</div>
+</body>
+
+</html>

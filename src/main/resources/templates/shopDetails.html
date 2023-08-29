@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Shop Details</title>
+	<style>
+		body {
+			font-family: calibri;
+			text-align: center;
+			background-color: #eef2ff;
+		}
+
+		/*header css*/
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+		}
+
+		.logo {
+			width: 20%;
+			font-weight: bold;
+			font-size: 180%;
+			color: #3f5cbc;
+		}
+
+		.connect {
+			width: 50%;
+			font-size: 120%;
+		}
+
+		.connect a {
+			margin: 15px;
+			font-weight: bold;
+			text-decoration: none;
+			color: #111827;
+		}
+
+		.connect a:hover {
+			color: #3f5cbc;
+		}
+
+		.log {
+			width: 30%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: row;
+		}
+
+		.log a {
+			margin: 5px;
+			text-decoration: none;
+		}
+
+		.log a:first-child {
+			color: #111827;
+			padding: 10px 20px;
+			border-radius: 10px;
+		}
+
+		.log a:first-child:hover {
+			background-color: #f9fafb;
+		}
+
+		.log a:last-child {
+			color: white;
+			padding: 10px 20px;
+			background-color: #3f5cbc;
+			border-radius: 10px;
+			font-weight: bold;
+		}
+
+		.log a:last-child:hover {
+			background-color: #1e40af;
+		}
+
+		button {
+			color: white;
+			padding: 10px 20px;
+			background-color: #3f5cbc;
+			border-radius: 10px;
+			font-weight: bold;
+			border: none;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #1e40af;
+		}
+
+		.adminlog {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.adminlog h3 {
+			width: 20%;
+			color: white;
+			padding: 5px 5px;
+			background-color: #3f5cbc;
+			border-radius: 10px;
+			font-weight: bold;
+		}
+
+		.adminlog h3:hover {
+			background-color: #1e40af;
+		}
+		
+		/*main css*/
+		.shop-details {
+			margin: 50px;
+			padding-left: 50px;
+			text-align: left;
+			padding: 50px;
+			background-color: #eeefff;
+			border-radius: 20px;
+			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<div class="header">
+			<div class="logo">
+				<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
+			</div>
+			<div class="connect">
+				<a th:href="@{/}">Home</a>
+				<a th:href="@{/finalproducts}"><span style="color:#3f5cbc">Products</span></a>
+				<a th:href="@{/locations}">Locations</a>
+				<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user_listing}">Users</a>
+				<a th:href="@{/aboutus}">About Us</a>
+			</div>
+			<div class="log">
+				<form th:action="@{/logout}" method="post">
+					<a th:href="@{/finalproducts}">Find Shops Now</a>
+					<a sec:authorize="isAnonymous()" th:href="@{/login}">Log in</a>
+					<button sec:authorize="isAuthenticated()" type="submit">Logout</button>
+				</form>
+			</div>
+		</div>
+		<div class="adminlog" sec:authorize="hasAnyAuthority('ADMIN')">
+			<h3>Admin Access</h3>
+		</div>
+	</div>
+
+	<div class="shop-details">
+		<h2 th:text="${shop.shopName}"></h2>
+		<p th:text="${shop.shopData}"></p>
+		<table>
+			<tr>
+				<th colspan="2">Contact Details - </th>
+			</tr>
+			<tr>
+				<td>☎ : </td>
+				<td><span th:text="${shop.phone}"></span></td>
+			</tr>
+			<tr>
+				<td>✉ : </td>
+				<td><span th:text="${shop.email}"></td>
+			</tr>
+		</table>
+	</div>
+	<button onclick="goBack()">Go Back to Shop List</button>
+
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+</body>
+
+</html>

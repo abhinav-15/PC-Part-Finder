@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<style>
+		body {
+			font-family: calibri;
+			text-align: center;
+			background-color: #eef2ff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		/*header css*/
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+		}
+
+		/*login css*/
+		.login-box {
+			text-align: left;
+			padding: 50px;
+			background-color: #eeefff;
+			border-radius: 20px;
+			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+		}
+
+		.login-box input[type=text],
+		[type=password] {
+			width: 100%;
+			padding: 10px 10px;
+			margin: 5px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		.login-box button[type=submit] {
+			color: white;
+			padding: 12px 20px;
+			border: 0px;
+			border-radius: 10px;
+			background-color: #3f5cbc;
+		}
+
+		.signup {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
+		</div>
+	</div>
+
+	<h1>Login</h1>
+	<div class="login-box">
+		<form th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="username">Username : </label>
+				<input type="text" id="username" name="username" th:required="required">
+			</div>
+			<div class="form-group">
+				<label for="password">Password : </label>
+				<input type="password" id="password" name="password" th:required="required">
+			</div>
+			<br>
+			<div class="form-group">
+				<button type="submit">Login</button>
+			</div>
+		</form>
+		<br>
+		<div class="signup">
+			<a th:href="@{/signup}">New user? Click here to Sign Up</a>
+		</div>
+	</div>
+</body>
+
+</html>
