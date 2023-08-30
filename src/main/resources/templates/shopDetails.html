@@ -8,10 +8,33 @@
 		body {
 			font-family: calibri;
 			text-align: center;
-			background-color: #eef2ff;
+			background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+			background-size: 400% 400%;
+			animation: gradient 15s ease infinite;
+			height: 100vh;
+		}
+
+		@keyframes gradient {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 50%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
 		}
 
 		/*header css*/
+		.nav {
+			background-color: #eeefff;
+			border-radius: 20px;
+			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+		}
+
 		.header {
 			display: flex;
 			align-items: center;
@@ -92,6 +115,7 @@
 		}
 
 		.adminlog {
+			height: 0px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -100,18 +124,32 @@
 		.adminlog h3 {
 			width: 20%;
 			color: white;
+			margin: 5px;
 			padding: 5px 5px;
 			background-color: #3f5cbc;
 			border-radius: 10px;
 			font-weight: bold;
+			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
 		}
 
 		.adminlog h3:hover {
 			background-color: #1e40af;
 		}
-		
+
+
 		/*main css*/
+
+		.main {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
 		.shop-details {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			margin: 50px;
 			padding-left: 50px;
 			text-align: left;
@@ -119,12 +157,25 @@
 			background-color: #eeefff;
 			border-radius: 20px;
 			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+			width: 70%;
+		}
+
+		.left {
+			margin-right: 40px;
+		}
+
+		.right img {
+			border-radius: 10px;
+		}
+
+		.right img:hover {
+			box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 		}
 	</style>
 </head>
 
 <body>
-	<div>
+	<div class="nav">
 		<div class="header">
 			<div class="logo">
 				<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
@@ -149,24 +200,32 @@
 		</div>
 	</div>
 
-	<div class="shop-details">
-		<h2 th:text="${shop.shopName}"></h2>
-		<p th:text="${shop.shopData}"></p>
-		<table>
-			<tr>
-				<th colspan="2">Contact Details - </th>
-			</tr>
-			<tr>
-				<td>☎ : </td>
-				<td><span th:text="${shop.phone}"></span></td>
-			</tr>
-			<tr>
-				<td>✉ : </td>
-				<td><span th:text="${shop.email}"></td>
-			</tr>
-		</table>
+	<div class="main">
+		<div class="shop-details">
+			<div class="left">
+				<h2 th:text="${shop.shopName}"></h2>
+				<p th:text="${shop.shopData}"></p>
+				<table>
+					<tr>
+						<th colspan="2">Contact Details - </th>
+					</tr>
+					<tr>
+						<td>☎ : </td>
+						<td><span th:text="${shop.phone}"></span></td>
+					</tr>
+					<tr>
+						<td>✉ : </td>
+						<td><span th:text="${shop.email}"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="right">
+				<img th:src="${shop.image}" height="200px">
+			</div>
+		</div>
+		<button onclick="goBack()">Go Back to Shop List</button>
+
 	</div>
-	<button onclick="goBack()">Go Back to Shop List</button>
 
 	<script>
 		function goBack() {

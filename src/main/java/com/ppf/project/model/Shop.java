@@ -27,8 +27,18 @@ public class Shop {
     private String email;
     @Column(name = "city")
     private String city;
+    private String image;
+    
 
-    public String getCity() {
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getCity() {
         return city;
     }
 
@@ -122,7 +132,7 @@ public class Shop {
 	}
 	
 	public Shop(Long shopId, String shopName, String shopData, Long phone, String email, Set<Device> devices,
-			Set<HardwareIssue> hardwareIssues, Set<SoftwareIssue> softwareIssues, String city) {
+			Set<HardwareIssue> hardwareIssues, Set<SoftwareIssue> softwareIssues, String city, String image) {
 		super();
 		this.shopId = shopId;
 		this.shopName = shopName;
@@ -133,13 +143,14 @@ public class Shop {
 		this.hardwareIssues = hardwareIssues;
 		this.softwareIssues = softwareIssues;
 		this.city = city;
+		this.image = image;
 	}
 
 	@Override
 	public String toString() {
 		return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", shopData=" + shopData + ", phone=" + phone
-				+ ", email=" + email + ", city=" + city + ", devices=" + devices + ", hardwareIssues=" + hardwareIssues
-				+ ", softwareIssues=" + softwareIssues + "]";
+				+ ", email=" + email + ", city=" + city + ", image=" + image + ", devices=" + devices
+				+ ", hardwareIssues=" + hardwareIssues + ", softwareIssues=" + softwareIssues + "]";
 	}
 
 }
