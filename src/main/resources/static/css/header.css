@@ -1,0 +1,106 @@
+.nav {
+	background-color: #eeefff;
+	border-radius: 20px;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+}
+
+.logo {
+	width: 30%;
+	font-weight: bold;
+	font-size: 180%;
+	color: #3f5cbc;
+}
+
+.connect {
+	width: 50%;
+	font-size: 120%;
+}
+
+.connect a {
+	margin: 15px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #111827;
+}
+
+.connect a:hover {
+	color: #3f5cbc;
+}
+
+.log {
+	width: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.log a {
+	margin: 5px;
+	text-decoration: none;
+}
+
+.log a:first-child {
+	color: #111827;
+	padding: 10px 20px;
+	border-radius: 10px;
+}
+
+.log a:first-child:hover {
+	background-color: #f9fafb;
+}
+
+.log a:last-child {
+	color: white;
+	padding: 10px 20px;
+	background-color: #3f5cbc;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.log a:last-child:hover {
+	background-color: #1e40af;
+}
+
+button {
+	color: white;
+	padding: 10px 20px;
+	background-color: #3f5cbc;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #1e40af;
+}
+
+.adminlog {
+	height: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.adminlog h3 {
+	width: 20%;
+	color: white;
+	margin: 5px;
+	padding: 5px 5px;
+	background-color: #3f5cbc;
+	border-radius: 10px;
+	font-weight: bold;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+}
+
+.adminlog h3:hover {
+	background-color: #1e40af;
+}

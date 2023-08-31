@@ -1,0 +1,81 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*header css*/
+body .navhome {
+	color: #3f5cbc;
+}
+
+/*main css*/
+.main {
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.intro {
+	margin-top: 30px;
+}
+
+.intro h1 {
+	font-size: 400%;
+}
+
+.explain h3 {
+	font-weight: 100;
+}
+
+.baselog {
+	display: flex;
+}
+
+.baselog a {
+	margin: 5px;
+	text-decoration: none;
+}
+
+.baselog a:first-child {
+	color: white;
+	padding: 10px 20px;
+	background-color: #3f5cbc;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.baselog a:first-child:hover {
+	background-color: #1e40af;
+}
+
+.baselog a:last-child {
+	color: #111827;
+	padding: 10px 20px;
+	border-radius: 10px;
+}
+
+.baselog a:last-child:hover {
+	background-color: #f9fafb;
+}

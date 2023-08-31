@@ -31,5 +31,7 @@ public interface ShopDao extends JpaRepository<Shop, Long> {
 			@Param("softwareIssueName") String softwareIssueName);
 
 	Shop findByShopId(Long shopId);
+	
+	List<Shop> findByCity(String city);
 
 }

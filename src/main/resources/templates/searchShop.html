@@ -4,244 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Search Results</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" th:href="@{/css/searchShop.css}" />
 	<style>
-		body {
-			font-family: calibri;
-			text-align: center;
-			background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
-			background-size: 400% 400%;
-			animation: gradient 15s ease infinite;
-			height: 100vh;
-		}
 
-		@keyframes gradient {
-			0% {
-				background-position: 0% 50%;
-			}
-
-			50% {
-				background-position: 100% 50%;
-			}
-
-			100% {
-				background-position: 0% 50%;
-			}
-		}
-
-/*header css*/
-		.nav {
-			background-color: #eeefff;
-			border-radius: 20px;
-			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
-		}
-		
-				.header {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 100px;
-		}
-
-		.logo {
-			width: 20%;
-			font-weight: bold;
-			font-size: 180%;
-			color: #3f5cbc;
-		}
-
-		.connect {
-			width: 50%;
-			font-size: 120%;
-		}
-
-		.connect a {
-			margin: 15px;
-			font-weight: bold;
-			text-decoration: none;
-			color: #111827;
-		}
-
-		.connect a:hover {
-			color: #3f5cbc;
-		}
-
-		.log {
-			width: 30%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: row;
-		}
-
-		.log a {
-			margin: 5px;
-			text-decoration: none;
-		}
-
-		.log a:first-child {
-			color: #111827;
-			padding: 10px 20px;
-			border-radius: 10px;
-		}
-
-		.log a:first-child:hover {
-			background-color: #f9fafb;
-		}
-
-		.log a:last-child {
-			color: white;
-			padding: 10px 20px;
-			background-color: #3f5cbc;
-			border-radius: 10px;
-			font-weight: bold;
-		}
-
-		.log a:last-child:hover {
-			background-color: #1e40af;
-		}
-
-		button {
-			color: white;
-			padding: 10px 20px;
-			background-color: #3f5cbc;
-			border-radius: 10px;
-			font-weight: bold;
-			border: none;
-			cursor: pointer;
-		}
-
-		button:hover {
-			background-color: #1e40af;
-		}
-
-		.adminlog {
-			height: 0px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.adminlog h3 {
-			width: 20%;
-			color: white;
-			margin:5px;
-			padding: 5px 5px;
-			background-color: #3f5cbc;
-			border-radius: 10px;
-			font-weight: bold;
-			box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
-		}
-
-		.adminlog h3:hover {
-			background-color: #1e40af;
-		}
-
-
-
-		/*main css*/
-		.shops {
-			align-items: center;
-			justify-content: center;
-			display: grid;
-			grid-gap: 20px;
-			grid-template-columns: 40% 40%;
-		}
-
-
-		.shop {
-			background-color: #ffffff;
-			text-align: left;
-			border-radius: 10px;
-			padding: 20px 20px 20px 50px;
-			line-height: 17pt;
-		}
-
-		.shop:hover {
-			box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-		}
-		
-		.back {
-			margin-top: 20px;
-		}
-		.back a {
-			text-decoration: none;
-			color: white;
-			padding: 10px 20px;
-			background-color: #3f5cbc;
-			border-radius: 10px;
-			font-weight: bold;
-		}
-		
-		.back a:hover {
-			background-color: #1e40af;
-		}
-		
-		.explain a {
-			text-decoration: none;
-			color: white;
-			padding: 5px 10px;
-			background-color: black;
-			border-radius: 10px;
-			font-weight: bold;	
-		}
-
-
-
-		/*footer css*/
-		.footer {
-			margin-top: 50px;
-			border-top-left-radius: 20px;
-			border-top-right-radius: 20px;
-			background-color: #4f46e5;
-			color: #b0b7f9;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
-		}
-
-		.basedata {
-			padding-top: 50px;
-			width: 40%;
-		}
-
-		.basedata h1 {
-			color: white;
-		}
-
-		.basedata h3 {
-			font-weight: lighter;
-			font-size: 120%;
-		}
 	</style>
 </head>
 
 <body>
-
-	<div class="nav">
-		<div class="header">
-			<div class="logo">
-				<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
-			</div>
-			<div class="connect">
-				<a th:href="@{/}">Home</a>
-				<a th:href="@{/finalproducts}"><span style="color:#3f5cbc">Products</span></a>
-				<a th:href="@{/locations}">Locations</a>
-				<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user_listing}">Users</a>
-				<a th:href="@{/aboutus}">About Us</a>
-			</div>
-			<div class="log">
-				<form th:action="@{/logout}" method="post">
-					<a th:href="@{/finalproducts}">Find Shops Now</a>
-					<a sec:authorize="isAnonymous()" th:href="@{/login}">Log in</a>
-					<button sec:authorize="isAuthenticated()" type="submit">Logout</button>
-				</form>
-			</div>
-		</div>
-		<div class="adminlog" sec:authorize="hasAnyAuthority('ADMIN')">
-			<h3>Admin Access</h3>
-		</div>
-	</div>
+	<div th:replace="header :: header"></div>
 
 	<div class="explain">
 		<h2>Shops that match your selections:</h2>
@@ -249,26 +20,23 @@
 			<div th:each="shop : ${shopInfoList}" class="shop">
 				<h2 th:text="${shop.shopName}"></h2>
 				<p>
-					<span th:text="${shop.shopData}"></span><br>
+					<span th:if="${#strings.length(shop.shopData) >= 50}"
+						th:text="${#strings.substring(shop.shopData, 0, 50)  + '..., ' + shop.city}"></span>
+					<span th:unless="${#strings.length(shop.shopData) >= 50}"
+						th:text="${shop.shopData + ', ' + shop.city}"></span><br>
 					☎ : <span th:text="${shop.phone}"></span><br><br>
-					<a th:href="@{/shopDetails(shopId=${shop.shopId})}">View Details</a>
+					<a th:href="@{/shopDetails(shopId=${shop.shopId})}" style="margin-right: 10px;">View Details</a>
+					<a target="_blank" th:href="${shop.map}">↗ Get Directions</a>
 				</p>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="back">
-	<a th:href="@{/finalproducts}">Back to Search</a>
+		<a th:href="@{/finalproducts}">Back to Search</a>
 	</div>
 
-	<div class="footer">
-		<div class="basedata">
-			<h3>Find Parts and Repairs shops</h3>
-			<h1>Locate shops for PC parts near you</h1>
-			<h3>Easily find PC parts shops near you with our location-based search feature. View shop details and read
-				user reviews to make informed decisions on where to buy your PC parts.</h3>
-		</div>
-	</div>
+	<div th:replace="footer :: footer"></div>
 </body>
 
 </html>

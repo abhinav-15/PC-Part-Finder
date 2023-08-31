@@ -1,0 +1,76 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*main css*/
+
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.shop-details {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 50px;
+	padding-left: 50px;
+	text-align: left;
+	padding: 50px;
+	background-color: #eeefff;
+	border-radius: 20px;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+	width: 70%;
+}
+
+.left {
+	margin-right: 40px;
+}
+
+.directions a {
+	text-decoration: none;
+	color: white;
+	padding: 5px 10px;
+	background-color: black;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.directions td {
+	height: 50px;
+}
+
+.right img {
+	border-radius: 10px;
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.right img:hover {
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+}
+
+body .navproducts {
+	color: #3f5cbc;
+}

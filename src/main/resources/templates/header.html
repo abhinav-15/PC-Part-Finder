@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+
+<body>
+	<header>
+		<div class="nav">
+			<div class="header">
+				<div class="logo">
+					<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
+				</div>
+				<div class="connect">
+					<a th:href="@{/}" class="navhome">Home</a>
+					<a th:href="@{/finalproducts}" class="navproducts">Products</a>
+					<a th:href="@{/cities}" class="navcities">Cities</a>
+					<a sec:authorize="hasAnyAuthority('ADMIN','SHOPOWNER')" th:href="@{/addshop}" class="navshop">Add Shop</a>
+					<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user_listing}" class="navusers">Users</a>
+					<a th:href="@{/aboutus}" class="navabout">About Us</a>
+				</div>
+				<div class="log">
+					<form th:action="@{/logout}" method="post">
+						<a th:href="@{/finalproducts}">Find Shops Now</a>
+						<a sec:authorize="isAnonymous()" th:href="@{/login}">Log in</a>
+						<button sec:authorize="isAuthenticated()" type="submit">Logout</button>
+					</form>
+				</div>
+			</div>
+			<div class="adminlog" sec:authorize="hasAnyAuthority('ADMIN')">
+				<h3>Admin Access</h3>
+			</div>
+			<div class="adminlog" sec:authorize="hasAnyAuthority('SHOPOWNER')">
+				<h3>Shop Owner Access</h3>
+			</div>
+		</div>
+	</header>
+</body>
+
+</html>

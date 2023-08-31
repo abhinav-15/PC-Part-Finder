@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,13 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        	.antMatchers("/logo/**", "/").permitAll()
+        	.antMatchers("/logo/****", "/", "/learnmore", "/css/**").permitAll()
+        	.antMatchers("/addshop").hasAnyAuthority("SHOPOWNER", "ADMIN")
+        	.antMatchers("/user_listing").hasAuthority("ADMIN")
             .antMatchers("/signup").permitAll()
-            .antMatchers("/new").hasAnyAuthority("ADMIN")
             .antMatchers("/edit/**").hasAnyAuthority("ADMIN")
             .antMatchers("/delete/**").hasAuthority("ADMIN")
             .antMatchers("/h2-console/**").permitAll()
@@ -51,11 +53,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()
             .loginPage("/login")
+            .failureUrl("/login?error=true")
             .permitAll()
             .and()
             .logout().permitAll()
             .and()
-            .exceptionHandling().accessDeniedPage("/403");
+            .exceptionHandling().accessDeniedPage("/noaccess");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();

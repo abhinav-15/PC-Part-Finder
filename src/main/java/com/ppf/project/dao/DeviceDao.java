@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ppf.project.model.Device;
 
-public interface DeviceDao extends JpaRepository<Device, Long> {
+public interface DeviceDao extends JpaRepository<Device, Integer> {
 
 }

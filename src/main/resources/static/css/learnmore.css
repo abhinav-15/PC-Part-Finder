@@ -1,0 +1,66 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*main css*/
+.main {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.intro {
+	margin-top: 30px;
+}
+
+.intro h1 {
+	font-size: 200%;
+}
+
+.members {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.data {
+	width: 70%;
+	margin: 20px;
+	background-color: #ffffff;
+	text-align: left;
+	border-radius: 10px;
+	padding: 20px 20px 20px 50px;
+	line-height: 17pt;
+	text-align: justify;
+}
+
+
+.data:hover {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.data h3 {
+	text-align: center;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Learn More</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" th:href="@{/css/learnmore.css}" />
+</head>
+
+<body>
+
+	<div th:replace="header :: header"></div>
+
+	<div class="main">
+		<div class="intro">
+			<h1>Pc Part Finder</h1>
+		</div>
+		<div class="members">
+			<div class="data">
+				<p><b>PcPartFinder</b> is a web-based application made to help you in locating shops that can repair
+					your device be it with Hardware Issue or Software.
+					Our site makes the process of finding trust worthy shops easier just by giving some basic input like
+					city name, the device you use and the issues device faces.
+					Our project aims to streamline the search for repair services and enhance the user experience by
+					providing targeted results based on individual requirements.</p>
+			</div>
+			<div class="data">
+				<h3>How to Use PcPartFinder: Step-by-Step Tutorial</h3>
+				<ol>
+					<li><strong>Homepage Introduction:</strong> Learn how PcPartFinder can help you find the right
+						repair shops.</li>
+					<li><strong>Sign Up or Log In:</strong> Create an account or log in to access the platform.</li>
+					<li><strong>Search for Repair Shops:</strong> Specify city, device type, and issues to find matches.
+					</li>
+					<li><strong>Results Display:</strong> View a list of repair shops based on your criteria.</li>
+					<li><strong>Shop Details:</strong> Learn more about a shop by clicking on its listing.</li>
+					<li><strong>Contact Shop:</strong> Connect with a repair shop using provided contact information.
+					</li>
+					<li><strong>Log Out:</strong> Sign out when done.</li>
+				</ol>
+			</div>
+			<div class="data">
+				<p>Thank you for using <b>PcPartFinder</b>. We are here to help you find shops that are right for your
+					problems and services. In a new city finding proper repair shops is a risk, so in such case we will
+					help you. No matter the problems be it Hardware repairs or Software Issues we have shops for all
+					your troubles. We value your feedback and aim to provide an efficient and user-friendly experience.
+				</p>
+			</div>
+			<div class="data">
+				<h3>Upcoming Features</h3>
+
+				<ul>
+					<li><strong>User Review:</strong> Rate and Review shop you visit to let others know.</li>
+					<li><strong>Interactive Map:</strong> Input your live location and get directions to the shop
+						directly.</li>
+					<li><strong>Mobile App:</strong> For easy and fast access whenever and whereever needed.</li>
+					... and much more
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div th:replace="footer :: footer"></div>
+</body>
+
+</html>

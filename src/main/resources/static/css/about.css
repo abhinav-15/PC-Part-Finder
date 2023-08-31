@@ -1,0 +1,67 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*main css*/
+.main {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.intro {
+	margin-top: 30px;
+}
+
+.intro h1 {
+	font-size: 200%;
+}
+
+.members {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.about {
+	padding: 20px;
+	background-color: #eeefff;
+	border-radius: 20px;
+	box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 5) inset;
+	margin: 20px;
+	width: 200px;
+}
+
+.about:hover {
+	color: #3f5cbc;
+}
+
+.members a {
+	text-decoration: none;
+	color: black
+}
+
+body .navabout {
+	color: #3f5cbc;
+}

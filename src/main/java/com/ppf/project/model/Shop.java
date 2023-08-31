@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,7 +30,7 @@ public class Shop {
     @Column(name = "city")
     private String city;
     private String image;
-    
+    private String map;
 
     public String getImage() {
 		return image;
@@ -36,6 +38,14 @@ public class Shop {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
 	}
 
 	public String getCity() {
@@ -54,8 +64,8 @@ public class Shop {
 
     @ManyToMany
     @JoinTable(name = "shop_hardware_issue",
-               joinColumns = @JoinColumn(name = "shop_id"),
-               inverseJoinColumns = @JoinColumn(name = "hw_issue_id"))
+            joinColumns = @JoinColumn(name = "shop_id"),
+            inverseJoinColumns = @JoinColumn(name = "hw_issue_id"))
     private Set<HardwareIssue> hardwareIssues;
 
     @ManyToMany
@@ -63,7 +73,7 @@ public class Shop {
                joinColumns = @JoinColumn(name = "shop_id"),
                inverseJoinColumns = @JoinColumn(name = "sw_issue_id"))
     private Set<SoftwareIssue> softwareIssues;
-
+    
     public Shop() {
     }
 

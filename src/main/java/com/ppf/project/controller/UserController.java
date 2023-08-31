@@ -64,14 +64,12 @@ public class UserController {
     
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupUser(@ModelAttribute("user") User user) {
-        // Set user role as "USER"
         Role userRole = new Role();
         userRole.setName("USER");
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
         user.setRoles(roles);
 
-        // Encrypt password
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -83,7 +81,14 @@ public class UserController {
     }
     
     @GetMapping("/login")
-    public String login() {
+    public String loginPage(@RequestParam(value = "error", required = false) String error,
+                            Model model) {
+        if (error != null) {
+            model.addAttribute("errorMessage", "Invalid username or password.");
+        }
+
+        User user = new User();
+        model.addAttribute("user", user);
         return "login";
     }
     

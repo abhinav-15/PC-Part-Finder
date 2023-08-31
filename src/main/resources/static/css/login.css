@@ -1,0 +1,77 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*header css*/
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+}
+
+/*login css*/
+.login-box {
+	text-align: left;
+	padding: 50px;
+	background-color: #eeefff;
+	border-radius: 20px;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+}
+
+.login-box input[type=text],
+[type=password] {
+	width: 100%;
+	padding: 10px 10px;
+	margin: 5px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.login-box button[type=submit] {
+	color: white;
+	padding: 12px 20px;
+	border: 0px;
+	border-radius: 10px;
+	background-color: #3f5cbc;
+}
+
+.signup {
+	text-align: center;
+}
+
+.alert {
+	text-align: center;
+	color: red;
+	position: absolute;
+	top: 40%;
+}
+
+.submit-button {
+	text-align: center;
+}

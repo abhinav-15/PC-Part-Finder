@@ -1,0 +1,63 @@
+body {
+	font-family: calibri;
+	text-align: center;
+	background: linear-gradient(-45deg, #DCF8EF, #FEE2F8, #96afff, #eeefff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+/*main css*/
+.mainbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.user {
+	width: auto;
+	text-align: left;
+	padding: 50px;
+	background-color: #eeefff;
+	border-radius: 20px;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 5) inset;
+}
+
+.user td,
+th {
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.user tr:hover {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.user a {
+	text-decoration: none;
+	color: #111827;
+	padding: 5px;
+	border: 2px solid #111827;
+	border-radius: 10px;
+}
+
+body .navusers {
+	color: #3f5cbc;
+}

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ppf.project.model.Device;
@@ -15,7 +17,9 @@ import com.ppf.project.dao.HardwareIssueDao;
 import com.ppf.project.dao.ShopDao;
 import com.ppf.project.dao.SoftwareIssueDao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ProductController {
@@ -74,6 +78,86 @@ public class ProductController {
 		Shop shop = shopDao.findByShopId(shopId);
 		model.addAttribute("shop", shop);
 		return "shopDetails";
+	}
+
+	@GetMapping("/cities")
+	public String showShopsByCity(@RequestParam(value = "selectedCity", required = false) String selectedCity,
+			Model model) {
+		if (selectedCity == null) {
+			selectedCity = "";
+		}
+
+		List<Shop> shops = shopDao.findByCity(selectedCity);
+		model.addAttribute("selectedCity", selectedCity);
+		model.addAttribute("shops", shops);
+		return "cities";
+	}
+
+	@GetMapping("/learnmore")
+	public String learnmore() {
+		return "learnmore";
+	}
+	
+
+	@GetMapping("/noaccess")
+	public String noaccess() {
+		return "noaccess";
+	}
+	
+	
+	@GetMapping("/addshop")
+	public String addShopPage(Model model) {
+		Shop shop = new Shop();
+		List<HardwareIssue> hardwareIssues = hardwareIssueDao.findAll();
+		List<SoftwareIssue> softwareIssues = softwareIssueDao.findAll();
+		List<Device> devices = deviceDao.findAll();
+		model.addAttribute("shop", shop);
+		model.addAttribute("devices", devices);
+		model.addAttribute("hardwareIssues", hardwareIssues);
+		model.addAttribute("softwareIssues", softwareIssues);
+		return "addshop";
+	}
+
+	@PostMapping("/addshop")
+	public String addShop(@ModelAttribute("shop") Shop shop,
+			@RequestParam(value = "selectedDevices", required = false) List<Integer> selectedDevices,
+			@RequestParam(value = "selectedHardwareIssues", required = false) List<Integer> selectedHardwareIssues,
+			@RequestParam(value = "selectedSoftwareIssues", required = false) List<Integer> selectedSoftwareIssues) {
+		if (selectedHardwareIssues != null && !selectedHardwareIssues.isEmpty()) {
+			Set<HardwareIssue> selectedIssues = new HashSet<>();
+			for (Integer issueId : selectedHardwareIssues) {
+				HardwareIssue hardwareIssue = hardwareIssueDao.findByHwIssueId(issueId);
+				if (hardwareIssue != null) {
+					selectedIssues.add(hardwareIssue);
+				}
+			}
+			shop.setHardwareIssues(selectedIssues);
+		}
+		
+		if (selectedDevices != null && !selectedDevices.isEmpty()) {
+            Set<Device> selectedDeviceSet = new HashSet<>();
+            for (Integer deviceId : selectedDevices) {
+                Device device = deviceDao.findById(deviceId).orElse(null);
+                if (device != null) {
+                    selectedDeviceSet.add(device);
+                }
+            }
+            shop.setDevices(selectedDeviceSet);
+        }
+		
+		if (selectedSoftwareIssues != null && !selectedSoftwareIssues.isEmpty()) {
+            Set<SoftwareIssue> selectedIssueSet = new HashSet<>();
+            for (Integer issueId : selectedSoftwareIssues) {
+                SoftwareIssue softwareIssue = softwareIssueDao.findBySwIssueId(issueId);
+                if (softwareIssue != null) {
+                    selectedIssueSet.add(softwareIssue);
+                }
+            }
+            shop.setSoftwareIssues(selectedIssueSet);
+        }
+
+		shopDao.save(shop);
+		return "redirect:/";
 	}
 
 }

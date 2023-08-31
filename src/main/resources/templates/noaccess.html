@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add Shop</title>
+	<link rel="stylesheet" th:href="@{/css/noaccess.css}" />
+</head>
+
+<body>
+	<div class="header">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="error-message">
+			<h1 style="font-size:80px;">✖</h1>
+			You don't have access to this page. Please return to the Home Page.
+		</div><br>
+		<a class="home" th:href="@{/}">Back to Home Page</a>
+	</div>
+</body>
+
+</html>

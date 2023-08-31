@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Cities</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" th:href="@{/css/cities.css}" />
+
+</head>
+
+<body>
+	<div th:replace="header :: header"></div>
+	
+	<div class="main">
+		<div class="main-center">
+			<div class=intro>
+				<h2>Select a City</h2>
+			</div>
+			<div class="dropdown">
+				<form th:action="@{/cities}" method="get">
+					<select name="selectedCity">
+						<option value="" selected></option>
+						<option value="nashik" th:selected="${selectedCity == 'nashik'}">Nashik</option>
+						<option value="amravati" th:selected="${selectedCity == 'amravati'}">Amravati</option>
+						<option value="kanpur" th:selected="${selectedCity == 'kanpur'}">Kanpur</option>
+					</select>
+					<button type="submit">Search</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="explain">
+			<h2>Repair Shops in your city</h2>
+			<div class="shops">
+				<div th:each="shop : ${shops}" class="shop">
+					<h2 th:text="${shop.shopName}"></h2>
+					<p>
+						<span th:if="${#strings.length(shop.shopData) >= 50}"
+							th:text="${#strings.substring(shop.shopData, 0, 50)  + '..., ' + shop.city}"></span>
+						<span th:unless="${#strings.length(shop.shopData) >= 50}"
+							th:text="${shop.shopData + ', ' + shop.city}"></span><br>
+						☎ : <span th:text="${shop.phone}"></span><br><br>
+						<a th:href="@{/shopDetails(shopId=${shop.shopId})}" style="margin-right: 10px;">View Details</a>
+						<a target="_blank" th:href="${shop.map}">↗ Get Directions</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="footer :: footer"></div>
+
+</body>
+
+</html>
