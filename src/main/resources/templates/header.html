@@ -12,14 +12,29 @@
 				<div class="logo">
 					<a th:href="@{/}"><img th:src="@{logo/logo.png}" width="150px"></a>
 				</div>
+
 				<div class="connect">
-					<a th:href="@{/}" class="navhome">Home</a>
-					<a th:href="@{/finalproducts}" class="navproducts">Products</a>
-					<a th:href="@{/cities}" class="navcities">Cities</a>
-					<a sec:authorize="hasAnyAuthority('ADMIN','SHOPOWNER')" th:href="@{/addshop}" class="navshop">Add Shop</a>
-					<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user_listing}" class="navusers">Users</a>
+					<a th:href="@{/}" class="navhome">Home
+					</a>
+
+					<a th:href="@{/finalproducts}" class="navproducts tip">Products
+						<span class="tipnote">shops for your device</span>
+					</a>
+
+					<a th:href="@{/cities}" class="navcities tip">Cities
+						<span class="tipnote">shops in your city</span>
+					</a>
+
+					<a sec:authorize="hasAnyAuthority('ADMIN','SHOPOWNER')" th:href="@{/addshop}" class="navshop">Add
+						Shop
+					</a>
+
+					<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user_listing}" class="navusers">Users
+					</a>
+
 					<a th:href="@{/aboutus}" class="navabout">About Us</a>
 				</div>
+
 				<div class="log">
 					<form th:action="@{/logout}" method="post">
 						<a th:href="@{/finalproducts}">Find Shops Now</a>

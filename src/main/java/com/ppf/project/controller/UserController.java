@@ -30,6 +30,12 @@ public class UserController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) {
+    	
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        
+        user.setEnabled(true); 
         userDao.save(user);
         return "redirect:/user_listing";
     }
