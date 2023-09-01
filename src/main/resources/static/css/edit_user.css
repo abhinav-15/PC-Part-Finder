@@ -46,21 +46,32 @@ body {
 	box-sizing: border-box;
 }
 
-	.check td{
-	height:50px;
+.check td {
+	height: 50px;
 }
 
-.edit-user button[type=submit] {
+.buttons {
+	text-align: center;
+}
+
+.buttons .submit {
 	color: white;
 	padding: 12px 20px;
 	border: 0px;
 	border-radius: 10px;
 	background-color: #3f5cbc;
+	margin-right: 20px;
 }
 
-.edit-user td.button-cell {
-	text-align: center;
+.buttons .cancel {
+	color: red;
+	padding: 12px 20px;
+	border: 0px;
+	border-radius: 10px;
+	border: 1px solid red;
+
 }
+
 
 body .navshop {
 	color: #3f5cbc;
