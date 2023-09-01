@@ -18,89 +18,86 @@ import java.util.Set;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserDao userDao;
+	@Autowired
+	private UserDao userDao;
 
-    @RequestMapping("/new")
-    public String newUserPage(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "new_user";
-    }
+	@RequestMapping("/new")
+	public String newUserPage(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		return "new_user";
+	}
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute("user") User user) {
-    	
-    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPassword = encoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        
-        user.setEnabled(true); 
-        userDao.save(user);
-        return "redirect:/user_listing";
-    }
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String saveUser(@ModelAttribute("user") User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 
-    @RequestMapping("/edit/{id}")
-    public ModelAndView showEditUserPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_user");
-        User user = userDao.findById(id).orElse(null);
-        mav.addObject("user", user);
-        return mav;
-    }
+		userDao.save(user);
+		return "redirect:/user_listing";
+	}
 
-    @RequestMapping("/delete/{id}")
-    public String deleteUser(@PathVariable(name = "id") Long id) {
-        userDao.deleteById(id);
-        return "redirect:/user_listing";
-    }
+	@RequestMapping("/edit/{id}")
+	public ModelAndView showEditUserPage(@PathVariable(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView("edit_user");
+		User user = userDao.findById(id).orElse(null);
+		mav.addObject("user", user);
+		return mav;
+	}
 
-    @RequestMapping("/user_listing")
-    public String viewUserListing(Model model) {
-        List<User> userList = userDao.findAll();
-        model.addAttribute("userList", userList);
-        return "user_listing";
-    }
-    
-    @GetMapping("/signup")
-    public String signupPage(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "signup";
-    }
-    
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signupUser(@ModelAttribute("user") User user) {
-        Role userRole = new Role();
-        userRole.setName("USER");
-        Set<Role> roles = new HashSet<>();
-        roles.add(userRole);
-        user.setRoles(roles);
+	@RequestMapping("/delete/{id}")
+	public String deleteUser(@PathVariable(name = "id") Long id) {
+		userDao.deleteById(id);
+		return "redirect:/user_listing";
+	}
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPassword = encoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+	@RequestMapping("/user_listing")
+	public String viewUserListing(Model model) {
+		List<User> userList = userDao.findAll();
+		model.addAttribute("userList", userList);
+		return "user_listing";
+	}
 
-        user.setEnabled(true); 
-        userDao.save(user);
+	@GetMapping("/signup")
+	public String signupPage(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		return "signup";
+	}
 
-        return "redirect:/login"; 
-    }
-    
-    @GetMapping("/login")
-    public String loginPage(@RequestParam(value = "error", required = false) String error,
-                            Model model) {
-        if (error != null) {
-            model.addAttribute("errorMessage", "Invalid username or password.");
-        }
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String signupUser(@ModelAttribute("user") User user) {
+		Role userRole = new Role();
+		userRole.setName("USER");
+		Set<Role> roles = new HashSet<>();
+		roles.add(userRole);
+		user.setRoles(roles);
 
-        User user = new User();
-        model.addAttribute("user", user);
-        return "login";
-    }
-    
-    @GetMapping("/aboutus")
-    public String about() {
-        return "about";
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+
+		user.setEnabled(true);
+		userDao.save(user);
+
+		return "redirect:/login";
+	}
+
+	@GetMapping("/login")
+	public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
+		if (error != null) {
+			model.addAttribute("errorMessage", "Invalid username or password.");
+		}
+
+		User user = new User();
+		model.addAttribute("user", user);
+		return "login";
+	}
+
+	@GetMapping("/aboutus")
+	public String about() {
+		return "about";
 	}
 
 }

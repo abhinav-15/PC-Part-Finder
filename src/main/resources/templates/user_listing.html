@@ -27,7 +27,11 @@
 				<tr th:each="user : ${userList}">
 					<td th:text="${user.id}">User ID</td>
 					<td th:text="${user.username}">Username</td>
-					<td th:text="${user.email}">Enabled</td>
+					<td th:text="${user.email}">Email</td>
+					<td>
+                        <span th:if="${user.enabled == true}" th:text="'Active'" style="color:green;"></span>
+                        <span th:if="${user.enabled != true}" th:text="'Disabled'" style="color:red;"></span>
+                    </td>
 					<td>
 						<a th:href="@{'/edit/' + ${user.id}}">✏ Edit</a>
 						&nbsp;&nbsp;
